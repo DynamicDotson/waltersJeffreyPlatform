@@ -3,12 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Next_Level
+  - Previous_Level
+  - Point
+  - Death_Point
+  - Ladder
+  - ChocolateStand
+  - Finish_level
+  - Return_Home
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Ground
@@ -38,6 +46,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: background_city
+    uniqueID: 4061105113
+    locked: 0
   - name: background
     uniqueID: 408738457
     locked: 0
