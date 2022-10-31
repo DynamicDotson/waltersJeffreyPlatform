@@ -12,6 +12,7 @@ TagManager:
   - ChocolateStand
   - Finish_level
   - Return_Home
+  - Main_Menu
   layers:
   - Default
   - TransparentFX

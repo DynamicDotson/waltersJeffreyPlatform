@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class ChocolateStand : MonoBehaviour
 {
 
-    public float timeToTogglePlatform = 2;
-    public float currentTime = 0;
-    public bool enable = true;
+    public float TimeToTogglePlatform = 2;
+    public float CurrentTime = 0;
+    public bool Enable = true;
     public bool PlayerHasHitChocolateStand;
     public GameObject Player;
     public Color InvisableColor;
@@ -16,16 +15,16 @@ public class ChocolateStand : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enable = true;
+        Enable = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentTime += Time.deltaTime;
-        if (currentTime >= timeToTogglePlatform)
+        CurrentTime += Time.deltaTime;
+        if (CurrentTime >= TimeToTogglePlatform)
         {
-            currentTime = 0;
+            CurrentTime = 0;
             PlayerHasHitChocolateStand = false;
         }
 

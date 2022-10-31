@@ -11,8 +11,8 @@ public class Timer : MonoBehaviour
     public bool TimerOn = false;
 
     public TMP_Text TimerTxt;
-    public GameObject restartButton;
-    public SpriteRenderer playerSprite;
+    public GameObject RestartButton;
+    public SpriteRenderer PlayerSprite;
     void Start()
     {
         TimerOn = true;
@@ -33,7 +33,7 @@ public class Timer : MonoBehaviour
                 Debug.Log("Time is UP!");
                 TimeLeft = 0;
                 TimerOn = false;
-                restartButton.SetActive(true);
+                RestartButton.SetActive(true);
                 Time.timeScale = 0;
             }
         }
@@ -50,10 +50,10 @@ public class Timer : MonoBehaviour
     public void RestartGame()
 
     {
-        playerSprite.enabled = true;
+        PlayerSprite.enabled = true;
         Health.totalHealth = 1f;
         Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
 
         
 

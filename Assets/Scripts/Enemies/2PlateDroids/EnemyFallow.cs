@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class EnemyFallow : MonoBehaviour
 {
-    public GameObject player;
-    public float speed;
-    public PlayerController stopFallowing;
+    public GameObject Player;
+    public float Speed;
+    public PlayerController StopFallowing;
 
     private float distance;
     //Start is called before the first frame update
 
     void Start()
     {
-        stopFallowing = FindObjectOfType<PlayerController>();
+        StopFallowing = FindObjectOfType<PlayerController>();
        
     }
 
@@ -23,7 +23,7 @@ public class EnemyFallow : MonoBehaviour
     {
 
 
-        if(player == null)
+        if(Player == null)
         {
             return;
         }
@@ -31,10 +31,10 @@ public class EnemyFallow : MonoBehaviour
         //distance = Vector2.Distance(transform.position, player.transform.position);
         //Vector2 direction = player.transform.position - transform.position;
 
-        if(!stopFallowing.ShouldBeInvisable)    
+        if(!StopFallowing.ShouldBeInvisable)    
         {
-            distance = Vector2.Distance(transform.position, player.transform.position);
-            Vector2 direction = player.transform.position - transform.position;
+            distance = Vector2.Distance(transform.position, Player.transform.position);
+            Vector2 direction = Player.transform.position - transform.position;
         }
 
 
@@ -43,7 +43,7 @@ public class EnemyFallow : MonoBehaviour
 
         if (distance < 8)
         {
-            transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(this.transform.position, Player.transform.position, Speed * Time.deltaTime);
         }
 
 

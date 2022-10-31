@@ -6,33 +6,34 @@ using UnityEngine.UI;
 using TMPro; 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 5f;
-    public float jumpSpeed = 8f;
+    public float Speed = 5f;
+    public float JumpSpeed = 8f;
     private float direction = 0f;
     private Rigidbody2D player;
     public bool LookingLeft;
 
-    public Transform groundCheck;
-    public float groundCheckRadius;
-    public LayerMask groundLayer;
+    public Transform GroundCheck;
+    public float GroundCheckRadius;
+    public LayerMask GroundLayer;
     private bool isTouchingGround;
 
     private Animator playerAnimation;
 
     private Vector3 respawnPoint;
-    public GameObject fallDetector;
-    public TMP_Text scoreText;
-    public HealthBar healthBar;
+    public GameObject FallDetector;
+    public TMP_Text ScoreText;
+    public HealthBar HealthBar;
     public GameObject TimeTxt;
-    public bool isDead = false;
-    public GameObject playerBack;
-    public SpriteRenderer playerSprite;
+    public bool IsDead = false;
+    public GameObject PlayerBack;
+    public SpriteRenderer PlayerSprite;
     public Color InvisableColor;
     public Color NormalColor;
     public bool ShouldBeInvisable;
-    public float currentTime = 0;
+    public float CurrentTime = 0;
     public float HowLongICanBeInvisable;
-
+    public GameObject HitIcon;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -42,16 +43,25 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Rigidbody2D>();
         playerAnimation = GetComponent<Animator>();
         respawnPoint = transform.position;
-        scoreText.text = "Score: " + Scoring.totalScore;
+        ScoreText.text = "Score: " + Scoring.totalScore;
+    }
+
+    IEnumerator Hearts()
+    {
+        HitIcon.SetActive(true);
+        yield return new WaitForSeconds(2);
+        HitIcon.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentTime += Time.deltaTime;
-        if (currentTime >= HowLongICanBeInvisable)
+
+
+        CurrentTime += Time.deltaTime;
+        if (CurrentTime >= HowLongICanBeInvisable)
         {
-            currentTime = 0;
+            CurrentTime = 0;
             ShouldBeInvisable = false;
         }
 
@@ -68,11 +78,11 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        isTouchingGround = Physics2D.OverlapCircle(GroundCheck.position, GroundCheckRadius, GroundLayer);
         direction = Input.GetAxis("Horizontal");
         Debug.Log(direction);
 
-        if(isDead == false)
+        if(IsDead == false)
         {
            // TimeTxt.SetActive(false);
         }
@@ -83,30 +93,30 @@ public class PlayerController : MonoBehaviour
 
         {
 
-            isDead = true;
+            IsDead = true;
             Debug.Log("Die");
             TimeTxt.SetActive( true );
-            playerSprite.enabled = false;
+            PlayerSprite.enabled = false;
 
 
         }
         else
         {
-            isDead = false;
+            IsDead = false;
         }
         
 
         if (direction > 0f)
 
         {
-            player.velocity = new Vector2(direction * speed, player.velocity.y);
+            player.velocity = new Vector2(direction * Speed, player.velocity.y);
             transform.localScale = new Vector2(-0.09781352f, 0.09781352f);
             LookingLeft = false;
         }
 
         else if (direction < 0f)
         {
-            player.velocity = new Vector2(direction * speed, player.velocity.y);
+            player.velocity = new Vector2(direction * Speed, player.velocity.y);
             transform.localScale = new Vector2(0.09781352f, 0.09781352f);
             LookingLeft = true;
         }
@@ -118,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isTouchingGround)
         {
-            player.velocity = new Vector2(player.velocity.x, jumpSpeed);
+            player.velocity = new Vector2(player.velocity.x, JumpSpeed);
         }
 
         playerAnimation.SetFloat("Speed", Mathf.Abs(player.velocity.x));
@@ -131,6 +141,8 @@ public class PlayerController : MonoBehaviour
         if(collision.tag == "FallDetector")
         {
             transform.position = respawnPoint;
+
+          
         }
 
         else if(collision.tag == "Checkpoint")
@@ -156,18 +168,28 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + -2);
             respawnPoint = transform.position;
+            Scoring.totalScore = 0;
+        }
+        else if (collision.tag == "Main_Menu")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + -3);
+            respawnPoint = transform.position;
+            Scoring.totalScore = 0;
         }
 
         else if(collision.tag == "Point")
         {
             Scoring.totalScore += 1;
-            scoreText.text = "Score: " + Scoring.totalScore;
+            ScoreText.text = "Score: " + Scoring.totalScore;
             collision.gameObject.SetActive(false);
         }
         else if(collision.tag == "Death_Point")
         {
-            healthBar.Damage(0.2f);
+            StartCoroutine(Hearts());
+            HealthBar.Damage(0.2f);
         }
+
+
 
 
 

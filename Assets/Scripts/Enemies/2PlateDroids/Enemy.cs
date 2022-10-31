@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int health = 1;
+    public int Health = 3;
 
-    public GameObject deathEffect;
+    public GameObject DeathEffect;
 
     public void TakeDamage (int damage)
     {
-        health -= damage;
+
+        Health -= damage;
+        if (Health <= 0)
         {
             Die();
         }
@@ -18,7 +20,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Instantiate(DeathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

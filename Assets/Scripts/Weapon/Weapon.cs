@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public Transform firePoint;
-    public GameObject bulletPrefab;
+    public Transform FirePoint;
+    public GameObject BulletPrefab;
     public PlayerController Controller;
 
     private void Update()
@@ -18,10 +18,10 @@ public class Weapon : MonoBehaviour
 
     void Shoot()
     {
-      var bullet =  Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+      var bullet =  Instantiate(BulletPrefab, FirePoint.position, FirePoint.rotation);
         if(Controller.LookingLeft == true)
         {
-            bullet.GetComponent<Bullet>().speed *= -1;
+            bullet.GetComponent<Bullet>().Speed *= -1;
  
         }
     }

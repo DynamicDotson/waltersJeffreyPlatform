@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 20f;
-    public int damage = 1;
+    public float Speed = 20f;
+    public int Damage = 1;
     public Rigidbody2D rb;
 
     // Use this for initialization
     void Start()
     {
-        rb.velocity = transform.right * speed;
+        rb.velocity = transform.right * Speed;
     }
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
             Enemy enemy = hitInfo.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(Damage);
             }
             Destroy(gameObject);
         }
