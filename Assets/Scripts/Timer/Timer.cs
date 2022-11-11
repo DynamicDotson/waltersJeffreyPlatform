@@ -53,6 +53,7 @@ public class Timer : MonoBehaviour
         PlayerSprite.enabled = true;
         Health.totalHealth = 1f;
         Time.timeScale = 1;
+        Scoring.totalScore = 0;
         SceneManager.LoadScene(1);
 
         

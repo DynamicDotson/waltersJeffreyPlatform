@@ -111,6 +111,7 @@ public class PlayerController : MonoBehaviour
         {
             player.velocity = new Vector2(direction * Speed, player.velocity.y);
             transform.localScale = new Vector2(-0.09781352f, 0.09781352f);
+            //gameObject.GetComponent<SpriteRender>().flipX = true;
             LookingLeft = false;
         }
 
@@ -120,6 +121,7 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector2(0.09781352f, 0.09781352f);
             LookingLeft = true;
         }
+
 
         else
         {
