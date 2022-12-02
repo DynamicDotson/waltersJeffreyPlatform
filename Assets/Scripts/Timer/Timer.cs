@@ -54,7 +54,7 @@ public class Timer : MonoBehaviour
         Health.totalHealth = 1f;
         Time.timeScale = 1;
         Scoring.totalScore = 0;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
 
         
 

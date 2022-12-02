@@ -12,7 +12,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void QuitGame()
@@ -22,6 +22,9 @@ public class MainMenuController : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(0);
+        Debug.Log("Next Scene");
+        Time.timeScale = 1;
+        SceneManager.LoadScene(1);
+        
     }
 }

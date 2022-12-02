@@ -104,9 +104,15 @@ public class PlayerController : MonoBehaviour
         {
             IsDead = false;
         }
+
+        if (IsDead)
+        {
+            return;
+        }
         
 
         if (direction > 0f)
+
 
         {
             player.velocity = new Vector2(direction * Speed, player.velocity.y);
@@ -114,6 +120,7 @@ public class PlayerController : MonoBehaviour
             //gameObject.GetComponent<SpriteRender>().flipX = true;
             LookingLeft = false;
         }
+
 
         else if (direction < 0f)
         {
