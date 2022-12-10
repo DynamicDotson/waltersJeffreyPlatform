@@ -21,7 +21,11 @@ public class Enemy : MonoBehaviour
 
     public Animator MyAnimator;
 
-    public SpriteRenderer MySpriteRenderer;  
+    public SpriteRenderer MySpriteRenderer;
+
+    public GameObject Chip;
+
+    public bool IsBoss;
     public void TakeDamage(int damage)
     {
 
@@ -43,5 +47,9 @@ public class Enemy : MonoBehaviour
         MYCollider.enabled = false;
         FallowCode.enabled = false;
         DeathDeletedObject.SetActive(true);
+        if (IsBoss == true)
+        {
+            Chip.SetActive(true);
+        }
     }
 }
